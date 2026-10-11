@@ -51,8 +51,11 @@ const { livros } = Astro.props;
   img,
   .nocover {
     width: 100%;
+    /* height:auto so the img's height attribute doesn't override the ratio. */
+    height: auto;
     aspect-ratio: 2 / 3;
-    object-fit: cover;
+    /* Covers vary in ratio: show the whole cover inside the 2:3 slot instead of cropping it. */
+    object-fit: contain;
     border: 1px solid var(--line);
     border-radius: 4px;
     margin-bottom: 0.5rem;

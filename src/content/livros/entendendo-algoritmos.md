@@ -3,7 +3,7 @@ title: Entendendo Algoritmos
 author: Aditya Y. Bhargava
 rating: 5
 finished: 2026-06-11
-cover: https://m.media-amazon.com/images/I/818bPFXnAAL._SL1500_.jpg
+cover: /capas/entendendo-algoritmos.jpg
 ---
 
 Entendendo algoritmos é um livro muito bom para iniciantes, ele te introduz a conceitos importantes de uma maneira simples, fazendo analogias como comparar a memória do computador com gavetas, o exemplo que aparece é exatamente esse: "Imagine que você vai a um show e precisa guardar as suas coisas na chapelaria. Algumas gavetas estão disponíveis. Cada gaveta pode guardar um elemento. Você deseja guardar duas coisas então pede duas gavetas." Sim, é bem superficial e não fala sobre bits, bytes, quantos bytes são usados pra representar tal tipo primitivo, mas isso é exatamente o porque desse livro ser tão bom pra iniciantes, ele introduz esses conceitos que são difíceis para iniciantes superficialmente e tirando uma parte da complexidade pra não fritar completamente a cabeça do leitor, ele introduz conceitos relativamente difíceis como memória de um jeito intuitivo até, como mostrado no trecho anterior.
