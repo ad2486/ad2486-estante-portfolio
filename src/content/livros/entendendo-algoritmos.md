@@ -1,7 +1,7 @@
 ---
 title: Entendendo Algoritmos
 author: Aditya Y. Bhargava
-rating: 4
+rating: 5
 finished: 2026-06-11
 cover: https://m.media-amazon.com/images/I/818bPFXnAAL._SL1500_.jpg
 ---
