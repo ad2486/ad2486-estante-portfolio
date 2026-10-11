@@ -1,0 +1,57 @@
+---
+import { render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Stars from "../../components/Stars.astro";
+import { formatDate, getLivros, hasReview } from "../../lib";
+
+// Only books with a review get a page; the rest live on the shelf alone.
+export async function getStaticPaths() {
+  const livros = (await getLivros()).filter(hasReview);
+  return livros.map((livro) => ({ params: { id: livro.id }, props: { livro } }));
+}
+
+const { livro } = Astro.props;
+const { Content } = await render(livro);
+---
+
+<Layout title={livro.data.title} description={`Resenha de ${livro.data.title}, de ${livro.data.author}.`}>
+  <article>
+    <div class="head">
+      {livro.data.cover && <img src={livro.data.cover} alt={`Capa de ${livro.data.title}`} width="200" height="300" />}
+      <div>
+        <h1>{livro.data.title}</h1>
+        <p class="muted">{livro.data.author}</p>
+        <Stars rating={livro.data.rating} />
+        <p class="mono muted when">lido em {formatDate(livro.data.finished)}</p>
+      </div>
+    </div>
+    <div class="prose"><Content /></div>
+    <p><a href="/estante/" class="mono muted">← estante</a></p>
+  </article>
+</Layout>
+
+<style>
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: flex-end;
+    margin: 2rem 0;
+  }
+  .head h1 {
+    margin: 0 0 0.25rem;
+  }
+  .head p {
+    margin: 0;
+  }
+  img {
+    width: 8rem;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+  }
+  .when {
+    font-size: 0.75rem;
+    margin-top: 0.5rem !important;
+  }
+</style>

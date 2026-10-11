@@ -1,0 +1,13 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Shelf from "../../components/Shelf.astro";
+import { getLivros } from "../../lib";
+
+const livros = await getLivros();
+---
+
+<Layout title="Livros" description="Livros que o Arthur Duarte já leu, com nota e resenha.">
+  <h1>Livros</h1>
+  <p class="muted">{livros.length} lidos. Os que têm resenha abrem numa página própria.</p>
+  <Shelf livros={livros} />
+</Layout>

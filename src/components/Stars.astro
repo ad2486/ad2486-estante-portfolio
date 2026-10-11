@@ -1,0 +1,17 @@
+---
+type Props = { rating: number };
+const { rating } = Astro.props;
+---
+
+<span class="mono stars" aria-label={`Nota ${rating} de 5`} role="img">{"★".repeat(rating)}<span class="off">{"★".repeat(5 - rating)}</span></span>
+
+<style>
+  .stars {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+  .off {
+    color: rgb(255 255 255 / 0.18);
+  }
+</style>

@@ -1,0 +1,12 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PostList from "../../components/PostList.astro";
+import { getPosts } from "../../lib";
+
+const posts = await getPosts();
+---
+
+<Layout title="Posts">
+  <h1>Posts</h1>
+  <PostList posts={posts} />
+</Layout>

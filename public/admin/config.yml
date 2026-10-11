@@ -1,0 +1,58 @@
+# Mirrors src/content.config.ts; keep field names in sync.
+# Login: "Sign in with Token" using a fine-grained GitHub token (Contents: read/write on this repo only).
+backend:
+  name: github
+  repo: ad2486/estante
+  branch: main
+  commit_messages:
+    create: "conteudo({{collection}}): cria {{slug}}"
+    update: "conteudo({{collection}}): atualiza {{slug}}"
+    delete: "conteudo({{collection}}): remove {{slug}}"
+    uploadMedia: "conteudo: envia {{path}}"
+    deleteMedia: "conteudo: remove {{path}}"
+
+locale: pt
+site_url: https://estante.arthur-duarte-portfolio.com.br
+media_folder: public/capas
+public_folder: /capas
+
+collections:
+  - name: posts
+    label: Posts
+    label_singular: Post
+    folder: src/content/posts
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{slug}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: Título, widget: string }
+      - { name: date, label: Data, widget: datetime, time_format: false, format: YYYY-MM-DD }
+      - name: tags
+        label: Tags
+        widget: select
+        multiple: true
+        required: false
+        options:
+          - { label: Diário, value: diario }
+          - { label: Técnico, value: tecnico }
+      - { name: draft, label: Rascunho, widget: boolean, default: false, required: false }
+      - { name: body, label: Texto, widget: markdown }
+
+  - name: livros
+    label: Livros
+    label_singular: Livro
+    folder: src/content/livros
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{slug}}"
+    sortable_fields: [finished, title, rating]
+    fields:
+      - { name: title, label: Título, widget: string }
+      - { name: author, label: Autor, widget: string }
+      - { name: rating, label: Nota (1 a 5), widget: number, value_type: int, min: 1, max: 5 }
+      - { name: finished, label: Terminei em, widget: datetime, time_format: false, format: YYYY-MM-DD }
+      - { name: cover, label: Capa, widget: image, required: false }
+      - { name: body, label: Resenha (opcional), widget: markdown, required: false }

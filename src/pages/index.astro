@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PostList from "../components/PostList.astro";
+import Shelf from "../components/Shelf.astro";
+import { getLivros, getPosts } from "../lib";
+
+const posts = (await getPosts()).slice(0, 5);
+const livros = (await getLivros()).slice(0, 6);
+---
+
+<Layout>
+  <h1>Estante</h1>
+  <p class="muted">Um canto mais pessoal: o que eu ando pensando, aprendendo e lendo.</p>
+
+  <h2 class="eyebrow">Posts recentes</h2>
+  <PostList posts={posts} />
+  <p><a href="/posts/" class="mono muted">todos os posts →</a></p>
+
+  <h2 class="eyebrow">Lidos recentemente</h2>
+  <Shelf livros={livros} />
+  <p><a href="/estante/" class="mono muted">estante completa →</a></p>
+</Layout>

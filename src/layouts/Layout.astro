@@ -1,0 +1,94 @@
+---
+import { Font } from "astro:assets";
+import { portfolioUrl } from "../lib";
+import "../styles/global.css";
+
+type Props = { title?: string; description?: string };
+const { title, description = "Posts e livros que eu li, por Arthur Duarte." } = Astro.props;
+const fullTitle = title ? `${title} | Estante` : "Estante | Arthur Duarte";
+const path = Astro.url.pathname;
+const nav = [
+  { href: "/posts/", label: "Posts" },
+  { href: "/estante/", label: "Livros" },
+];
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(path, Astro.site)} />
+    <Font cssVariable="--font-sans" preload />
+    <Font cssVariable="--font-mono" />
+  </head>
+  <body>
+    <header class="wrap top">
+      <a href="/" class="mono home">estante</a>
+      <nav aria-label="Principal">
+        <ul>
+          {nav.map((i) => (
+            <li>
+              <a href={i.href} aria-current={path.startsWith(i.href) ? "page" : undefined}>{i.label}</a>
+            </li>
+          ))}
+          <li><a href={portfolioUrl} class="muted">Portfolio ↗</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="wrap">
+      <slot />
+    </main>
+    <footer class="wrap mono muted foot">
+      <a href={portfolioUrl}>Arthur Duarte</a>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .home {
+    text-decoration: none;
+    font-size: 0.9rem;
+    /* Small links keep a 24px+ tap target, same rule as the portfolio. */
+    display: inline-flex;
+    min-height: 2rem;
+    align-items: center;
+  }
+  ul {
+    display: flex;
+    gap: 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.9rem;
+  }
+  nav a {
+    display: inline-flex;
+    min-height: 2rem;
+    align-items: center;
+    text-decoration: none;
+    color: var(--muted);
+    transition: color 0.3s var(--ease);
+  }
+  nav a:hover,
+  nav a[aria-current="page"] {
+    color: var(--text);
+  }
+  .foot {
+    font-size: 0.75rem;
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+  }
+</style>
