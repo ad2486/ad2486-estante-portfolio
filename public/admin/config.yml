@@ -2,7 +2,7 @@
 # Login: "Sign in with Token" using a fine-grained GitHub token (Contents: read/write on this repo only).
 backend:
   name: github
-  repo: ad2486/estante
+  repo: ad2486/ad2486-estante-portfolio
   branch: main
   commit_messages:
     create: "conteudo({{collection}}): cria {{slug}}"

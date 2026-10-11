@@ -22,8 +22,9 @@ npm run dev
 
 Automático pelo GitHub Actions (`.github/workflows/deploy.yml`). Secrets do repo:
 
-- `DEPLOY_SSH_KEY`: chave privada que tem acesso à VM
-- `DEPLOY_HOST`: `usuario@ip`
+- `DEPLOY_SSH_KEY`: chave privada só deste deploy. Na VM ela fica em `/home/deploy/.ssh/authorized_keys`
+  com `restrict,command="/usr/bin/rrsync -wo /var/www/estante"`: não abre shell e só escreve na pasta da estante
+- `DEPLOY_HOST`: `deploy@163.176.159.97`
 - `DEPLOY_KNOWN_HOSTS`: saída de `ssh-keyscan <ip>`
 
 nginx: `deploy/nginx.conf`.

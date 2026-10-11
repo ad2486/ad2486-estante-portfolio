@@ -30,4 +30,5 @@ jobs:
           install -m 700 -d ~/.ssh
           echo "$SSH_KEY" > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519
           echo "$KNOWN_HOSTS" > ~/.ssh/known_hosts
-          rsync -az --delete dist/ "$HOST:/var/www/estante/"
+          # The key is locked to `rrsync -wo /var/www/estante` on the VM, so the path is relative to it.
+          rsync -rlptz --delete dist/ "$HOST:./"
